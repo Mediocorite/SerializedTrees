@@ -1,0 +1,109 @@
+%----------------------------------------
+% pagesize and layout
+%----------------------------------------
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=40mm,
+  right=25mm,
+  top=20mm,
+  bottom=40mm,
+  headheight=19pt,
+  includehead=true,
+  heightrounded=true
+}
+
+%----------------------------------------
+% Needed for coloured text.
+%----------------------------------------
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+%----------------------------------------
+% Page style, header and footer.
+%----------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{}
+\cfoot{\thepage}
+
+%----------------------------------------
+% Set the parskip to avoid indenting.
+%----------------------------------------
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+%----------------------------------------
+% Avoid overfull lines.
+%----------------------------------------
+\sloppy
+
+%----------------------------------------
+% Graphics and graphics path.
+%----------------------------------------
+\usepackage{ifthen,graphicx}
+\graphicspath{{./images/}}
+
+%----------------------------------------
+% Font: Arial
+% helvet is similar to Arial and is part of TexLive.
+%----------------------------------------
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+%----------------------------------------
+% Title page commands.
+%----------------------------------------
+\newcommand{\titletext}[1]{\begin{center}\textsf{\textbf{\Huge{#1}}}\end{center}}
+\newcommand{\authortext}[1]{\begin{center}\textsf{\textbf{\large{by}\\ \vspace{2mm}\LARGE{ #1}}}\end{center}}
+\newcommand{\degreetext}[2]{\begin{center}\textsf{\large{In partial fulfilment of the \\ requirements for the degree of \\ #1\\ in\\ #2\\}}\end{center}}
+\newcommand{\centredcrest}{\begin{center}\includegraphics[scale=0.2]{strath_fullcolour.png}\end{center}}
+\newcommand{\depttext}[1]{\begin{center}Department of\\ #1\end{center}}
+\newcommand{\datetext}[1]{\begin{center}#1\end{center}}
+
+%----------------------------------------
+% For circled numbers.
+%----------------------------------------
+\usepackage{tikz}
+\newcommand{\circled}[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+%----------------------------------------
+% Generate hyperlinks in the PDF document.
+%----------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    pdflang={en-GB}
+}
+
+%----------------------------------------
+% Source code formatting
+%----------------------------------------
+\definecolor{codebkgnd}{RGB}{230,230,200}
+\usepackage{listings}
+\lstset{xleftmargin=2em}
+\lstset{framexleftmargin=2em}
+\lstset{
+  basicstyle=\small\ttfamily, % Compensate for 1.5 linespacing.
+  numbers=left,
+  numberstyle=\small\color{blue},
+  stepnumber=1,
+  numbersep=5pt,
+  backgroundcolor=\color{codebkgnd},
+  showspaces=false,               % do not show spaces adding particular underscores
+  showstringspaces=false,         % do not underline spaces within strings
+  showtabs=false,                 % do not show tabs within strings adding particular underscores
+  rulecolor=\color{black},
+  tabsize=4,                      % sets default tabsize to 4 spaces
+  captionpos=t,                   % sets the caption-position to top
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,  % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{Sepia},      % keyword style
+  commentstyle=\color{MidnightBlue},   % comment style
+  stringstyle=\color{OrangeRed}      % string literal style
+}
