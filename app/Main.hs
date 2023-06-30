@@ -1,4 +1,6 @@
 module Main where
+
+
 -- Importing binary libraries to construct byte arrays
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as BSL
@@ -39,8 +41,8 @@ serializeTree (Node value left right) = do
 -- leaf, it will return 1. When we call a node, it will recursively 
 -- calculate and accumulate the offset according to the depth.
 offset :: BST a -> Int
-offset (Leaf _) = 1
-offset (Node _ left right) = 2 + offset left + offset right
+offset (Leaf _) = 2
+offset (Node _ left right) = 1 + offset left + offset right
 
 traverseSkipLeft :: [Word8] -> [Int]
 traverseSkipLeft [] = []
@@ -62,9 +64,17 @@ main = do
                (Node 5 (Leaf 2) (Leaf 10))
                (Node 30 (Leaf 25) (Leaf 40))
   let serialized = serializeBST tree
+  putStrLn "\n \n \n"
   putStrLn "This is the serialized form a sample bst"
   print serialized
   
+  
+  -- putStrLn "\n \n \n"
+  -- let preOrdered = Preorder tree
+  -- putStrLn "This is preoreder form of program"
+  -- print preOrdered
+
+  putStrLn "\n \n \n"
   let values = traverseSkipLeft serialized
   putStrLn "Traversing the serialized BST while skipping left branches:"
   print values

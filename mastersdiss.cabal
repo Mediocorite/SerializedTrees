@@ -2,7 +2,7 @@ cabal-version:      2.4
 name:               mastersdiss
 version:            0.1.0.0
 description:        A library that allows users to serialize trees and operate on it.
-license:            GNU GENERAL PUBLIC LICENSE
+license:            GPL-3.0-or-later
 license-file:       LICENSE
 author:             Anzar Ahmad Malik
 maintainer:         12586091+Mediocorite@users.noreply.github.com
