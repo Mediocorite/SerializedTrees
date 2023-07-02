@@ -17,15 +17,6 @@ import Data.Word (Word8)
 -- Traditional Tree function
 data BST a = Leaf a | Node a (BST a) (BST a)
 
-
-preorderToByteString :: Show a => BST a -> BS.ByteString
-preorderToByteString = BSB.toByteString . mconcat . go
-  where
-    go (Leaf value) = [value]
-    go (Node val left right) =
-      BSB.intDec val : go left ++ go right
-
-
 serializeBST :: BST Int -> [Word8]
 serializeBST tree = BSL.unpack $ runPut (serializeTree tree)
 
@@ -81,15 +72,6 @@ main = do
   putStrLn "\n \n \n"
   putStrLn "This is the serialized form a sample bst"
   print serialized
-  
-  putStrLn "\n \n \n"
-  let myList = [65, 66, 67] -- Example list of Int values
-  let byteStringEx = listToByteString myList
-  print byteStringEx -- Display the byteString
-  -- putStrLn "\n \n \n"
-  -- let preOrdered = Preorder tree
-  -- putStrLn "This is preoreder form of program"
-  -- print preOrdered
 
   putStrLn "\n \n \n"
   let values = traverseSkipLeft serialized
