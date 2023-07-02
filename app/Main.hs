@@ -6,6 +6,7 @@ import qualified Data.ByteString.Lazy as BSL
 import Data.ByteString.Base16 (encode)
 import Data.Word ( Word8 )
 import Data.Int (Int64)
+import GHC.Event.Windows.FFI (pokeOffsetOverlapped)
 
 data Tree a = Leaf a | Node a (Tree a) (Tree a) deriving Show
 
@@ -33,19 +34,17 @@ printByteStringAsHex bs = putStrLn $ unwords $ chunksOf 2 $ show $ encode bs
 printByteStringAsInt :: B.ByteString -> IO ()
 printByteStringAsInt bs = putStrLn $ unwords $ map show $ B.unpack bs
 
-getRightNodes :: B.ByteString -> [Word8]
-getRightNodes bs = go bs []
-  where
-    go :: B.ByteString -> [Word8] -> [Word8]
-    go bs' acc
-      | B.null bs' = acc
-      | B.null (B.tail bs') = acc
-      | B.head bs' == 0x01 = let offset = fromIntegral (B.head (B.drop 1 bs'))
-                             in go (B.drop (offset + 5) bs') acc
-      | otherwise = go (B.drop 2 bs') (B.head (B.drop 1 bs') : acc)
-
-
-
+traverseRight :: B.ByteString -> Int -> [Int]
+traverseRight bs offset = 
+  if offset >= B.length bs then
+    []
+  else 
+    case B.index bs offset of 
+      0x01 -> 
+        let off = fromIntegral (B.index bs offset + 1)
+            val = fromIntegral (B.index bs offset + 2)
+        in ([val] <> traverseRight bs off)
+      0x00 -> [fromIntegral (B.index bs offset + 1)]
 
 main:: IO()
 main = do
@@ -64,6 +63,6 @@ main = do
     printByteStringAsHex serializedBST
 
     putStrLn "\n"
-    print "Right Nodes:"
-    let rightNodes = getRightNodes serializedBST
-    print rightNodes
+    print "Traversing right"
+    let rightMost = traverseRight serializedBST 0
+    print rightMost
