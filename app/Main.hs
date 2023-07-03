@@ -17,16 +17,16 @@ chunksOf n xs = take n xs : chunksOf n (drop n xs)
 serialize:: Tree Word8 -> B.ByteString
 serialize tree = B.toStrict $ BB.toLazyByteString $ serializeTree tree
 
-serializedLength :: Tree Word8 -> Int64
-serializedLength tree = BSL.length $ BB.toLazyByteString $ serializeTree tree
+lengthOfTree :: Tree Word8 -> Int64
+lengthOfTree tree = BSL.length $ BB.toLazyByteString $ serializeTree tree
 
 serializeTree :: Tree Word8 -> BB.Builder
 serializeTree (Leaf value) = BB.word8 0x00 <> BB.word8 value
 serializeTree (Node value left right) =
   let leftSerialized = serializeTree left
       rightSerialized = serializeTree right
-      rightOffset = BB.word8 $ fromIntegral $ serializedLength right -- +5 to account for tag and offset fields
-  in BB.word8 0x01 <> rightOffset <> BB.word8 value <> leftSerialized <> rightSerialized
+      rightOffset = BB.word8 $ fromIntegral $ lengthOfTree left + 1 -- Points to next after calculating left
+  in BB.word8 0x01 <> BB.word8 value <> rightOffset <> leftSerialized <> rightSerialized
 
 printByteStringAsHex :: B.ByteString -> IO ()
 printByteStringAsHex bs = putStrLn $ unwords $ chunksOf 2 $ show $ encode bs
