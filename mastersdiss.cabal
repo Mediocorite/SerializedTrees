@@ -22,11 +22,26 @@ common common-all
 
 library
     import:           common-all
-    -- exposed-modules:  Preorder
+    exposed-modules:  Serialization, Traversal,
+                        Tree, Utils
     hs-source-dirs:   src
 
-executable mastersdiss
+executable main
     import:           common-all
     main-is:          Main.hs
     -- other-modules:    Preorder
     hs-source-dirs:   app, src
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+    test
+  build-depends:
+    base >= 4.14 && < 5,
+    bytestring >= 0.11 && < 0.12,
+    containers >= 0.6 && < 0.7,
+    bytestring-builder >= 0.10 && < 0.11,
+    bytestring-strict-builder >= 0.4 && < 0.5,
+    transformers >= 0.5 && < 0.6,
+    hspec >= 2.7 && < 2.8

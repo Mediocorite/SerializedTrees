@@ -1,8 +1,7 @@
 # mastersdiss
 A library for creating and managing serialized trees.
 
-### TODO 
- - Creating a function to test out the offset value, and if its coherent to the logic. I am planning on writing a right most traversal by the end of this weekend.
+### TODO
  - Serializing from the get-go. Abstracting away the logic in a library and using it to define a a tree directly in a serialized format. I will use the AVL logic to automatically create a bst and also allow users to write trees in normal form the tree.
  - Use of tries (not sure how much more complexity this will add)
  - Generating a lot of fake data for different types of trees. I will then proceed to implement logic to handle
