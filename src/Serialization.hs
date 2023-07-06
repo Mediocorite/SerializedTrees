@@ -4,25 +4,23 @@ import qualified Data.ByteString as B
 import qualified Data.ByteString.Builder as BB
 import qualified Data.ByteString.Lazy as BSL
 import Data.ByteString.Base16 (encode)
-import Data.Word (Word8)
+import Data.Word (Word8, Word64)
 import Data.Int (Int64)
 import Data.ByteString.Char8 (unpack)
 import Data.Char (ord)
 import Tree (Tree(..))
 
 serialize :: Tree Word8 -> B.ByteString
-serialize tree = B.toStrict $ BB.toLazyByteString $ serializeTree tree
+serialize tree = B.toStrict $ BB.toLazyByteString $ fst $ serializeTree tree
 
-lengthOfTree :: Tree Word8 -> Int64
-lengthOfTree tree = BSL.length $ BB.toLazyByteString $ serializeTree tree
-
-serializeTree :: Tree Word8 -> BB.Builder
-serializeTree (Leaf value) = BB.word8 0x00 <> BB.word8 value
+serializeTree :: Tree Word8 -> (BB.Builder, Word64)
+serializeTree (Leaf value) = (BB.word8 0x00 <> BB.word8 value, 2)
 serializeTree (Node value left right) =
-  let leftSerialized = serializeTree left
-      rightSerialized = serializeTree right
-      rightOffset = BB.word8 $ fromIntegral $ lengthOfTree left -- Points to next after calculating left
-  in BB.word8 0x01 <> BB.word8 value <> rightOffset <> leftSerialized <> rightSerialized
+  let (leftSerialized, sizeLeft) = serializeTree left
+      (rightSerialized, sizeRight) = serializeTree right
+      rightOffset = BB.word64BE $ fromIntegral sizeLeft -- size of 8 bytes
+  -- Size of 10 for Node | Offset | Value -> 1 Byte | 1 Byte | 8 Bytes
+  in (BB.word8 0x01 <> BB.word8 value <> rightOffset <> leftSerialized <> rightSerialized, 10 + sizeLeft + sizeRight)
 
 printByteStringAsHex :: B.ByteString -> IO ()
 printByteStringAsHex bs = putStrLn $ unwords $ chunksOf 2 $ show $ encode bs
