@@ -23,7 +23,7 @@ common common-all
 library
     import:           common-all
     exposed-modules:  Serialization, Traversal,
-                        Tree, Utils
+                        Tree, Utils, View
     hs-source-dirs:   src
 
 executable main
@@ -33,6 +33,7 @@ executable main
     hs-source-dirs:   app, src
 
 test-suite test
+  import:common-all
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   hs-source-dirs:
