@@ -2,7 +2,8 @@ module Main where
 
 import Tree (Tree(..))
 import Serialization (serialize, printByteStringAsInt, printByteStringAsHex)
-import Traversal (traverseRight)
+import Traversal (traverseRight, traverseLeft)
+import View (Ptr(..))
 
 main :: IO ()
 main = do
@@ -22,10 +23,14 @@ main = do
 
   putStrLn "\n"
   print "Traversing right"
-  let rightMost = traverseRight serializedBST 0
+  let pointer = Ptr { buffer = serializedBST, position = 0 }
+      rightMost = traverseRight pointer
   print rightMost
 
-
+  -- putStrLn "\n"
+  -- print "Traversing left"
+  -- let rightMost = traverseLeft serializedBST 0
+  -- print rightMost
 
 -- module Main where
 
