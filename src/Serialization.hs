@@ -1,4 +1,4 @@
-module Serialization (serialize, printByteStringAsInt, printByteStringAsHex, bsToIntList) where
+module Serialization where
 
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Builder as BB
