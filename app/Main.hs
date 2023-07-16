@@ -3,7 +3,11 @@ module Main where
 import Tree (Tree(..))
 import Serialization (serialize, printByteStringAsInt, printByteStringAsHex)
 import Traversal (traverseRight, traverseLeft)
-import View (Ptr(..))
+import View (Ptr(..), view, int64Value)
+
+
+-- testing important 
+import qualified Data.ByteString as B
 
 main :: IO ()
 main = do
@@ -21,16 +25,23 @@ main = do
   printByteStringAsInt serializedBST
   printByteStringAsHex serializedBST
 
+  let offset= int64Value (B.take 8 (B.drop (2 + 24) serializedBST))
+  print "This is offset"
+  print offset
+
+  print "This is index"
+  print (B.index serializedBST 10)
+
   putStrLn "\n"
   print "Traversing right"
   let pointer = Ptr { buffer = serializedBST, position = 0 }
       rightMost = traverseRight pointer
   print rightMost
 
-  -- putStrLn "\n"
-  -- print "Traversing left"
-  -- let rightMost = traverseLeft serializedBST 0
-  -- print rightMost
+  putStrLn "\n"
+  print "Traversing left"
+  let leftMost = traverseLeft pointer
+  print leftMost
 
 -- module Main where
 

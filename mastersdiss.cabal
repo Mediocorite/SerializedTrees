@@ -22,14 +22,13 @@ common common-all
 
 library
     import:           common-all
-    exposed-modules:  Serialization, Traversal,
-                        Tree, Utils, View
+    exposed-modules:  Serialization, Traversal,Tree, Utils, View
     hs-source-dirs:   src
 
 executable main
     import:           common-all
     main-is:          Main.hs
-    -- other-modules:    Preorder
+    other-modules:    Serialization, Traversal, Tree, View
     hs-source-dirs:   app, src
 
 test-suite test
