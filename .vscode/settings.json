@@ -4,6 +4,7 @@
         "concat",
         "foldl",
         "foldr",
+        "hspec",
         "uncons"
     ]
 }
