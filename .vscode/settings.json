@@ -5,6 +5,11 @@
         "foldl",
         "foldr",
         "hspec",
+        "ISWIM",
+        "ROSCAT",
+        "Rosser",
+        "SASL",
+        "typeless",
         "uncons"
     ]
 }
