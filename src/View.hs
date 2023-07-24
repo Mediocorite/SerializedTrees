@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE InstanceSigs #-}
 module View where
 
 import qualified Data.ByteString as B
@@ -13,6 +15,15 @@ data Ptr t = Ptr {
     buffer :: B.ByteString,
     position :: Int
 }
+
+instance Show (Ptr (Tree Word8)) where
+  show :: Ptr (Tree Word8) -> String
+  show ptr = "Ptr { buffer = " ++ show (buffer ptr) ++ ", position = " ++ show (position ptr) ++ " }"
+
+instance Eq (Ptr (Tree Word8)) where
+  (==) :: Ptr (Tree Word8) -> Ptr (Tree Word8) -> Bool
+  (Ptr buffer1 position1) == (Ptr buffer2 position2) = buffer1 == buffer2 && position1 == position2
+
 
 data View a = VLeaf a | VNode a (Ptr (Tree a)) (Ptr (Tree a))
 

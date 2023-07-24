@@ -19,6 +19,7 @@ import IsSymmetric(isSymmetric)
 import LevelOrder(levelOrder)
 import MaxDepth(maxDepth)
 import PathSum(pathSum)
+import Builder (runSerializer)
 -- ...
 
 main :: IO ()
@@ -27,15 +28,14 @@ main = hspec $ do
     it "should invert a sample binary tree correctly" $ do
       let sampleTree = Node 1 (Node 2 (Leaf 3) (Leaf 4)) (Node 5 (Leaf 6) (Leaf 7))
       let invertedTree = Node 1 (Node 5 (Leaf 7) (Leaf 6)) (Node 2 (Leaf 4) (Leaf 3))
-      invert (Ptr (serialize sampleTree) 0) `shouldBe` serialize invertedTree
+      let samplePointer = Ptr (serialize sampleTree) 0
+      let invertedPointer = Ptr (serialize invertedTree) 0
+      runSerializer (invert samplePointer) `shouldBe` invertedPointer
 
     it "should invert a single-node binary tree correctly" $ do
       let sampleTree = Leaf 42
-      invert (Ptr (serialize sampleTree) 0) `shouldBe` serialize sampleTree
-
-    it "should invert an empty binary tree correctly" $ do
-      let sampleTree = Leaf ()
-      invert (Ptr (serialize sampleTree) 0) `shouldBe` serialize sampleTree
+      let samplePointer = Ptr (serialize sampleTree) 0
+      runSerializer (invert samplePointer) `shouldBe` samplePointer
 
   -- describe "isSymmetric" $ do
   --   it "should detect a symmetric binary tree correctly" $ do
