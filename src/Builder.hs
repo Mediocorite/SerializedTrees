@@ -21,7 +21,7 @@ nodeBuilder value left right =
         leftSize = size left
         rightBuilder = builder right
         rightSize = size right
-        rightOffset = BB.word64BE $ fromIntegral leftSize
+        rightOffset = BB.word64BE leftSize
     in Serializer (BB.word8 0x01 <> BB.word8 value <> rightOffset <> leftBuilder <> rightBuilder) (10 + leftSize + rightSize)
 
 runSerializer:: Serializer a -> Ptr a
