@@ -1,14 +1,23 @@
 {
     "cSpell.words": [
         "AVLBST",
+        "bgroup",
+        "Bifunctor",
         "concat",
+        "deepseq",
+        "diss",
+        "fmap",
         "foldl",
         "foldr",
         "hspec",
         "ISWIM",
+        "mastersdiss",
+        "mzero",
+        "Ptrs",
         "ROSCAT",
         "Rosser",
         "SASL",
+        "Strs",
         "typeless",
         "uncons"
     ]

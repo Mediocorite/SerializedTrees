@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleContexts #-}
 module Builder where
 import Data.Binary.Builder (Builder)
 import qualified Data.ByteString as B
@@ -5,7 +6,7 @@ import qualified Data.ByteString.Builder as BB
 import Data.Binary (Word64, Word8)
 import Tree (Tree)
 import View (Ptr (..))
-
+import Control.DeepSeq (NFData(..))
 
 data Serializer a = Serializer {
     builder:: Builder,
@@ -29,3 +30,6 @@ runSerializer value =
     let builderObject = builder value
         bs = B.toStrict $ BB.toLazyByteString builderObject
     in Ptr {buffer = bs, position = 0}
+
+instance (NFData a) => NFData (Serializer a) where
+  rnf (Serializer builder size) = rnf size

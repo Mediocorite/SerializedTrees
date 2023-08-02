@@ -2,10 +2,8 @@ module Serialization where
 
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Builder as BB
-import qualified Data.ByteString.Lazy as BSL
 import Data.ByteString.Base16 (encode)
 import Data.Word (Word8, Word64)
-import Data.Int (Int64)
 import Data.ByteString.Char8 (unpack)
 import Data.Char (ord)
 import Tree (Tree(..))

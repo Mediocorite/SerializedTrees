@@ -1,0 +1,35 @@
+\section{Literature Review}
+
+The imperative programming paradigm~\cite{fourProgrammingParadigm} relies on the programmer to instruct the machine to manipulate and manage memory in a particular order and way to perform actions. This is achieved either by creating groups of instructions as procedures\cite[Ishida1991]{ishida1991use} or by creating objects\cite[Lewis 2009]{lewis2009java}, which groups state along with the instructions. Either way, imperative programming relies heavily on the states, also known as variables, which are heavily modified, to create logic.\cite[Harrison 1997]{harrison1997introduction}. We going to borrow an example from Harrison's \emph{Introduction to Functional Programming to better illustrate this}.
+
+"
+    Before execution, the state has some initial value $\delta 0$, representing the inputs to the program, and when the program has finished, the state has a new value \delta' including the result(s). Moreover, during execution, each command changes the state, which has therefore proceeded through some finite sequence of values:
+
+    $\delta = \delta_0 \rightarrow \delta_1 \rightarrow \delta_2 \rightarrow \ldots \rightarrow \delta_n \rightarrow \delta'$
+
+    For example in a sorting program, the state initially includes an array of values, and when the program has finished, the state has been modified in such a way that these values are sorted, while the intermediate states represent progress towards this goal.
+
+"
+
+This allows programmers to have a great amount of control as well as rely on them to ensure the states and functions are operating well. However, this amount of low-level control isn't always desirable as it brings a high likelihood of errors and faults along with them.\cite[Ko 2005]{ko2005framework}. The use of special linting-type cases allows us to limit the possibility of errors but fundamentally the paradigm relies on human accuracy and precision to create a strong program with a rigid core.
+
+The declarative programming paradigm ~\cite{fourProgrammingParadigm} is a departure from the original imperative programming. Rather than allowing programmers instruct how the states should be modified and changing the states gradually to achieve the desired result, it relies on the compiler rather than the programmer to create instructions. The programmer instead has to \emph{describe} qualities of the desired result, and not how to achieve it. The compiler will understand the requested result and compute it using predetermined concepts. $\delta' = f(\delta)^2$
+
+This concept greatly limits the programmer's influence and can be detrimental or beneficial depending on the scenario. There are no states in a functional program, and thus there are no assignment variables. However, this allows us to create code that has the following benefits. \cite{hughes1989functional}
+\begin{enumerate}
+  \item The concept of modularity: 
+        A great aspect of Functional language is the level of abstraction associated. As we strictly describe what needs to be done, and rely on the compiler to create the low-level logic instead, our final code ends up being a collage of reusable functions. These can be reused to expand the functionality and are modular enough that changes to one of these components should not break the entire code base. As most languages deal with immutable data structures and lack of side effects, it's relatively easier to diagnose a solve an issue in an isolated manner and lets us enforce separations of concerns effectively.
+  \item The concise nature of FP:
+        The code generally is much more concise than its imperative counterpart. Most code consists of a description of functions, data structures, and an immutable declaration of variables. A large portion of often reused code or boilerplate that is associated with imperative programming is discarded to achieve the maximum resemblance to pure mathematical notions, that inspired functional programming's origin. 
+\end{enumerate}
+
+Functional programming excels when working closely with data and large magnitude of computation. It's safer approach and more concise nature allows programmers to create reliable software. In Trends in Functional Programming 13\textsuperscript{th} International Symposium (\textcite{turner2004total}), is a great breakdown of how functional programming is used in various sections of the industry, revolutionizing and setting a standard in many cases.
+
+Functional programming began with LISP language in the very essence, developed by John McCarthy in 1960 (\textcite{mccarthy1960lisp}), where McCarthy aimed to create a language that would work with symbolic data. What began as the basis, quickly expanded into multiple concepts that describe a modern functional programming language:
+
+\begin{itemize}
+  \item The Lambda Calculus (\textcite{Rosser1941-ROSCAT-17}) depicted typeless theory and theorems that are rudimentary building blocks of FP, describing how the functions interact to create a programming logic. It was further explored as the formation of Algol 60 (\textcite{backus1963revised}).
+  \item Development of lazy evaluation contributed to SASL and polymorphism attributed in development to ISWIM. Various evolution in the field happened in Edinburgh throughout the late 1960s and 1980s.
+  \item General development of more popular languages such as Miranda and Haskell that brings the current state of FP to be lazily evaluated, typed with algebraic types with polymorphism, have functions that are high order and have features such as pattern matching inbuilt. 
+\end{itemize}
+

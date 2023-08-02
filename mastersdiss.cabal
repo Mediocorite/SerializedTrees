@@ -7,8 +7,7 @@ license-file:       LICENSE
 author:             Anzar Ahmad Malik
 maintainer:         12586091+Mediocorite@users.noreply.github.com
 category:           Data, Serialization
--- homepage:           https://github.com/yourusername/mastersdiss
--- repository:         https://github.com/yourusername/mastersdiss.git
+homepage:           https://github.com/Mediocorite/mastersdiss.git
 
 extra-source-files:
     CHANGELOG.md
@@ -20,8 +19,11 @@ common common-all
         binary >= 0.8.9.0,
         bytestring >= 0.11.4.0,
         base16-bytestring >= 1.0 && < 1.2,
-        mtl >= 2.2.2
+        random >= 1.2.1.1,
+        mtl >= 2.2.2, 
+        deepseq >= 1.4.6.1
     default-language: Haskell2010
+    -- ghc-options: -Wall
 
 library
     import:           common-all
@@ -35,28 +37,30 @@ executable main
     hs-source-dirs:   app
     build-depends:    mastersdiss
 
+executable benchmark
+    import:           common-all
+    main-is:          Benchmark.hs
+    hs-source-dirs:   app
+    build-depends:    
+        mastersdiss,
+        cassava >= 0.5.3,
+        vector >= 0.13.0.0,
+        criterion >= 1.5
+    ghc-options: -Wall -O2
+
 test-suite test
     import:               common-all
     type:                 exitcode-stdio-1.0
     main-is:              Spec.hs
     hs-source-dirs:       test, src, app
     build-depends:
-        hspec,
+        hspec >= 2.7.10 && < 2.11.5,
         base >= 4.14 && < 5,
         bytestring >= 0.11 && < 0.12,
         containers >= 0.6 && < 0.7,
         bytestring-builder >= 0.10 && < 0.11,
         bytestring-strict-builder >= 0.4 && < 0.5,
         transformers >= 0.5 && < 0.6,
-        -- hspec >= 2.7 && < 2.8,
         mastersdiss
-    other-modules:
-        Serialization,
-        Traversal,
-        Tree,
-        Builder,
-        Invert,
-        IsSymmetric,
-        LevelOrder,
-        MaxDepth,
-        View, PathSum
+    other-modules:      Serialization, Traversal, Tree, Builder, View,
+                        Invert, IsSymmetric, LevelOrder, MaxDepth, PathSumathSum

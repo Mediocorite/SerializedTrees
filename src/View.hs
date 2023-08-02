@@ -3,13 +3,11 @@
 module View where
 
 import qualified Data.ByteString as B
-import qualified Data.ByteString.Builder as BB
 import qualified Data.ByteString.Lazy as BSL
 import Data.Binary.Get (getWord64be, runGet)
 import Data.Binary (Word8)
 import Tree ( Tree )
 import Serialization (bsToIntList)
-import Debug.Trace (trace)
 
 data Ptr t = Ptr {
     buffer :: B.ByteString,

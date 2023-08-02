@@ -2,13 +2,16 @@
 module PathSum where
   
 import qualified Data.ByteString as B
-import qualified Data.ByteString.Builder as BB
-import qualified Data.ByteString.Lazy as BSL
+-- import qualified Data.ByteString.Builder as BB
+-- import qualified Data.ByteString.Lazy as BSL
 import Data.Word (Word8)
 
 import Tree (Tree(..))
-import View (Ptr(..), view, int64Value, View(..))
-import Serialization (serializeTree)
+import View (Ptr(..), view, 
+                -- int64Value, 
+                View(..)
+                )
+-- import Serialization (serializeTree)
 pathSum :: Ptr (Tree Word8) -> Int
 pathSum ptr = case view ptr of
     VLeaf v -> fromIntegral v

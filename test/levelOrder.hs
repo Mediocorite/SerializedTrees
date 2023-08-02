@@ -1,9 +1,9 @@
 -- Level order traversal using the pointer
 module LevelOrder where 
   
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Builder as BB
-import qualified Data.ByteString.Lazy as BSL
+-- import qualified Data.ByteString as B
+-- import qualified Data.ByteString.Builder as BB
+-- import qualified Data.ByteString.Lazy as BSL
 import Data.Word (Word8)
 
 import Tree (Tree(..))

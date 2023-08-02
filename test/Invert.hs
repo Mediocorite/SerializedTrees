@@ -1,12 +1,15 @@
 module Invert where
     
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Builder as BB
-import qualified Data.ByteString.Lazy as BSL
+-- import qualified Data.ByteString as B
+-- import qualified Data.ByteString.Builder as BB
+-- import qualified Data.ByteString.Lazy as BSL
 import Data.Word (Word8)
 
 import Tree (Tree(..))
-import View (Ptr(..), view, int64Value, View(..))
+import View (Ptr(..), 
+            view, 
+            -- int64Value, 
+            View(..))
 import Builder (Serializer, leafBuilder, nodeBuilder)
 
 -- invert :: Ptr (Tree Word8) -> B.ByteString
@@ -23,3 +26,7 @@ invert pointer =
     case view pointer of
         VLeaf v -> leafBuilder v
         VNode v left right -> nodeBuilder v (invert right) (invert left)
+
+traditionalInvertTree :: Tree a -> Tree a
+traditionalInvertTree (Leaf val) = Leaf val
+traditionalInvertTree (Node val left right) = Node val (traditionalInvertTree right) (traditionalInvertTree left)

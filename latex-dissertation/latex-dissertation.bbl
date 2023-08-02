@@ -1,0 +1,200 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{harrison1997introduction}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1d44b053f0953d217186bae6128bf61b}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{1d44b053f0953d217186bae6128bf61b}
+      \strng{fullhash}{1d44b053f0953d217186bae6128bf61b}
+      \strng{bibnamehash}{1d44b053f0953d217186bae6128bf61b}
+      \strng{authorbibnamehash}{1d44b053f0953d217186bae6128bf61b}
+      \strng{authornamehash}{1d44b053f0953d217186bae6128bf61b}
+      \strng{authorfullhash}{1d44b053f0953d217186bae6128bf61b}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Lecture Notes, Cam}
+      \field{title}{Introduction to functional programming}
+      \field{year}{1997}
+    \endentry
+    \entry{hughes1989functional}{article}{}
+      \name{author}{1}{}{%
+        {{hash=05db43db1a50c29c0eca01fd35ec8758}{%
+           family={Hughes},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{05db43db1a50c29c0eca01fd35ec8758}
+      \strng{fullhash}{05db43db1a50c29c0eca01fd35ec8758}
+      \strng{bibnamehash}{05db43db1a50c29c0eca01fd35ec8758}
+      \strng{authorbibnamehash}{05db43db1a50c29c0eca01fd35ec8758}
+      \strng{authornamehash}{05db43db1a50c29c0eca01fd35ec8758}
+      \strng{authorfullhash}{05db43db1a50c29c0eca01fd35ec8758}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The computer journal}
+      \field{number}{2}
+      \field{title}{Why functional programming matters}
+      \field{volume}{32}
+      \field{year}{1989}
+      \field{pages}{98\bibrangedash 107}
+      \range{pages}{10}
+    \endentry
+    \entry{ishida1991use}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=fb3aca7f426e9b8f35e4399b2bafedf1}{%
+           family={Ishida},
+           familyi={I\bibinitperiod},
+           given={Toru},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d0b466dcade805f3ad3c4a9ac249b417}{%
+           family={Sasaki},
+           familyi={S\bibinitperiod},
+           given={Yutaka},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=dfa5e21b88fa20b13416303d7c5c2cc5}{%
+           family={Fukuhara},
+           familyi={F\bibinitperiod},
+           given={Yoshimi},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \strng{fullhash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \strng{bibnamehash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \strng{authorbibnamehash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \strng{authornamehash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \strng{authorfullhash}{9dd6f23cf661d5089eee5b533e94c63f}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings The Seventh IEEE Conference on Artificial Intelligence Application}
+      \field{title}{Use of procedural programming languages for controlling production systems}
+      \field{year}{1991}
+      \field{pages}{71\bibrangedash 72}
+      \range{pages}{2}
+    \endentry
+    \entry{ko2005framework}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2ad11eb70f573872886ad99898b2f7d4}{%
+           family={Ko},
+           familyi={K\bibinitperiod},
+           given={Amy\bibnamedelima J},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=7f3139b9d8c689d2ae47ba9be98a69f0}{%
+           family={Myers},
+           familyi={M\bibinitperiod},
+           given={Brad\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \strng{fullhash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \strng{bibnamehash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \strng{authorbibnamehash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \strng{authornamehash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \strng{authorfullhash}{3dbdc1a261c5498b5514ff1197d0fcdb}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Visual Languages \& Computing}
+      \field{number}{1-2}
+      \field{title}{A framework and methodology for studying the causes of software errors in programming systems}
+      \field{volume}{16}
+      \field{year}{2005}
+      \field{pages}{41\bibrangedash 84}
+      \range{pages}{44}
+    \endentry
+    \entry{lewis2009java}{book}{}
+      \name{author}{3}{}{%
+        {{hash=e8af8dc222af46964d264585bfad8a58}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a0fe6f3fb1a961e49587660ff0655384}{%
+           family={Loftus},
+           familyi={L\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=fbc75d368330a86f011d7ca2f21d07fa}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Allan},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson/Addison-Wesley}%
+      }
+      \strng{namehash}{dba5edb09ce151912c715c3ce6c21846}
+      \strng{fullhash}{dba5edb09ce151912c715c3ce6c21846}
+      \strng{bibnamehash}{dba5edb09ce151912c715c3ce6c21846}
+      \strng{authorbibnamehash}{dba5edb09ce151912c715c3ce6c21846}
+      \strng{authornamehash}{dba5edb09ce151912c715c3ce6c21846}
+      \strng{authorfullhash}{dba5edb09ce151912c715c3ce6c21846}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Java software solutions: foundations of program design}
+      \field{year}{2009}
+    \endentry
+    \entry{fourProgrammingParadigm}{misc}{}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{title}{Overview of the four main programming paradigms}
+      \field{urlday}{28}
+      \field{urlmonth}{7}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Overview of the four main programming paradigms:C\:\\Users\\Anzar Malik\\Zotero\\storage\\VIHR8CH8\\paradigms_themes-paradigm-overview-section.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://homes.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html
+      \endverb
+      \verb{url}
+      \verb https://homes.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

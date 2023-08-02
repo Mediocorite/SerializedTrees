@@ -1,9 +1,18 @@
-\documentclass[11pt,titlepage,dvipsnames,table,xcdraw]{article}
+\documentclass[11pt,titlepage,dvipsnames,table,xcdraw, english]{article}
 \usepackage{strath-dissertation}
 \usepackage{setspace}
 
 \usepackage{babel}
 \usepackage{lipsum} % For demonstration only.
+
+% \usepackage{dirtytalk} % For quotation marks.
+
+\usepackage{csquotes}
+\usepackage[
+backend=biber,
+style=chicago-authordate,
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 %--------------------------------
 % Degree settings
@@ -18,19 +27,19 @@
 % Title page.
 %--------------------------------
 \begin{titlepage}
-    \vspace*{5mm}
-    \titletext{Working Directly on Serialized Datatypes}
-    \vspace{10mm}
-    \authortext{Anzar Ahmad Malik}
-    \vspace{15mm}
-    \degreetext{\degreename}{\coursename}
-    \vspace{40mm}
-    \centredcrest
-    \vspace{5mm}
-    \depttext{\deptname}
-    \vspace{5mm}
-    \datetext{August, 2023}
-    \end{titlepage}
+\vspace*{5mm}
+\titletext{Insert dissertation title here, using\\ manual line breaks if necessary}
+\vspace{10mm}
+\authortext{Some person}
+\vspace{15mm}
+\degreetext{\degreename}{\coursename}
+\vspace{40mm}
+\centredcrest
+\vspace{5mm}
+\depttext{\deptname}
+\vspace{5mm}
+\datetext{August, 2021}
+\end{titlepage}
 
 %--------------------------------
 % Front matter numbering.
@@ -59,8 +68,8 @@
 \setstretch{1.0} % 1.0 line spacing.  
 \clearpage
 \tableofcontents
-\listoffigures   % Uncomment for a list of figures.
-\listoftables    % Uncomment for a list of tables.
+%\listoffigures   % Uncomment for a list of figures.
+%\listoftables    % Uncomment for a list of tables.
 \clearpage
 
 %--------------------------------
@@ -68,41 +77,22 @@
 %--------------------------------
 \pagenumbering{arabic} % Page numbering for rest of document.
 \setstretch{1.5} % 1.5 line spacing. 
-\input{introduction/introduction.tex} 
-
-% Literature Review
-\input{literatureReview/literature-review.tex} 
-\input{literatureReview/reasearch-problem.tex} 
-
-% Main Body
-\input{mainBody/development-model.tex} 
-\input{mainBody/design.tex} 
-\input{mainBody/build.tex} 
-\input{mainBody/testing.tex} 
-\input{mainBody/deployment.tex} 
-
-% Analysis
-\input{analysis/quantative-analysis.tex}
-
-% Conclusion 
-\input{conclusion/recomendatations.tex}
-\input{conclusion/future-works.tex}
-\input{conclusion/conclusions.tex}
+\input{background/literatureReview} % Add one file per section.
 
 %--------------------------------
 % Bibliography
 %--------------------------------
-\clearpage
-\setstretch{1.0}  % 1.0 line spacing. 
-\bibliographystyle{unsrt}
-\bibliography{bibliography}
-\clearpage
+% \clearpage
+% \setstretch{1.0}  % 1.0 line spacing. 
+% \bibliographystyle{unsrt}
+% \bibliography{bibliography}
+% \clearpage
 
 %--------------------------------
 % Appendices
 %--------------------------------
 \appendix
 \setstretch{1.5} % 1.5 line spacing.
-\input{apendix/appendix.tex} % Add one file per appendix
+\input{example-appendix} % Add one file per appendix
 
 \end{document}
