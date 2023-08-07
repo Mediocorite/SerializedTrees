@@ -3,14 +3,21 @@
 {-# LANGUAGE FlexibleInstances #-}
 module Main where
 
+import qualified Data.ByteString as B
 import Control.DeepSeq (  NFData(..) )
 import Criterion.Main ( defaultMain, bench, bgroup, nf )
 import Serialization (serialize)
-import Invert (invert, traditionalInvertTree)
-import Tree (generateTrees, Tree(..), calculateDepth)
-import qualified Data.ByteString as B
+import Tree (generateTrees, Tree(..))
 import View (Ptr(..))
 import Data.Word (Word8)
+
+-- Benchmarking the following algorithms
+import Invert (invert, traditionalInvertTree)
+import IsSymmetric (isSymmetric, traditionalIsSymmetric)
+import LevelOrder (levelOrder, traditionalLevelOrder)
+import MaxDepth (maxDepth, traditionalMaxDepth)
+import PathSum (pathSum, traditionalPathSumHelper)
+
 
 -- Add the NFData instance for Tree
 instance NFData a => NFData (Tree a) where
@@ -37,17 +44,26 @@ readSerializedTrees = return . B.split 0 <$> B.readFile "serializedTrees.bin"
 
 prepareTrees :: IO [(Tree Int, Ptr (Tree Word8), Int)]
 prepareTrees = do
-  trees <- generateTrees 255
+  -- Doing a simple test benchmark
+  trees <- generateTrees 255 10
   writeTrees trees
   let serializedTrees = map (serialize . fmap fromIntegral . fst) trees
   writeSerializedTrees serializedTrees
   let ptrTrees = map (\bs -> Ptr {buffer = bs, position = 0}) serializedTrees
-  return $ zip3 (map fst trees) ptrTrees (map (calculateDepth . fst) trees)
+  return $ zip3 (map fst trees) ptrTrees (map snd trees) 
 
 main :: IO ()
 main = do
   trees <- prepareTrees
   defaultMain [
-      bgroup "invert" [ bench (show depth) $ nf invert ptr | (tree, ptr, depth) <- trees ],
-      bgroup "traditionalInvertTree" [ bench (show depth) $ nf traditionalInvertTree tree | (tree, ptr, depth) <- trees ]
+      -- bgroup "invert" [ bench (show depth) $ nf invert ptr | (tree, ptr, depth) <- trees ],
+      -- bgroup "traditionalInvertTree" [ bench (show depth) $ nf traditionalInvertTree tree | (tree, ptr, depth) <- trees ]
+      -- bgroup "IsSymmetric" [ bench (show depth) $ nf isSymmetric ptr | (tree, ptr, depth) <- trees ],
+      -- bgroup "traditionalIsSymmetric" [ bench (show depth) $ nf traditionalIsSymmetric tree | (tree, ptr, depth) <- trees ]
+      -- bgroup "levelOrder" [ bench (show depth) $ nf levelOrder ptr | (tree, ptr, depth) <- trees ],
+      -- bgroup "traditionalLevelOrder" [ bench (show depth) $ nf traditionalLevelOrder tree | (tree, ptr, depth) <- trees ]
+      -- bgroup "maxDepth" [ bench (show depth) $ nf maxDepth ptr | (tree, ptr, depth) <- trees ],
+      -- bgroup "traditionalMaxDepth" [ bench (show depth) $ nf traditionalMaxDepth tree | (tree, ptr, depth) <- trees ]
+      bgroup "pathSum" [ bench (show depth) $ nf pathSum ptr | (tree, ptr, depth) <- trees ],
+      bgroup "traditionalPathSumHelper" [ bench (show depth) $ nf traditionalPathSumHelper tree | (tree, ptr, depth) <- trees ]
     ]

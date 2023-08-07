@@ -21,16 +21,16 @@ generateTree maxValue 0 = do
   value <- randomRIO (1, maxValue)
   return (Leaf value, 1)
 generateTree maxValue depth = do
-  leftDepth <- randomRIO (0, depth - 1)
+  let leftDepth = (depth - 1) `div` 2
   let rightDepth = depth - 1 - leftDepth
-  (leftSubtree, leftTreeDepth) <- generateTree maxValue leftDepth
-  (rightSubtree, rightTreeDepth) <- generateTree maxValue rightDepth
+  (leftSubtree, _) <- generateTree maxValue leftDepth
+  (rightSubtree, _) <- generateTree maxValue rightDepth
   value <- randomRIO (1, maxValue)
-  return (Node value leftSubtree rightSubtree, 1 + max leftTreeDepth rightTreeDepth)
+  return (Node value leftSubtree rightSubtree, depth)
 
 -- Generate 100 trees with values between 1 and 255 and depths from 2 to 100
-generateTrees :: Int -> IO [(Tree Int, Int)]
-generateTrees maxValue = mapM (generateTree maxValue) [2..100]
+generateTrees :: Int -> Int -> IO [(Tree Int, Int)]
+generateTrees maxValue maxRange= mapM (generateTree maxValue) [2..maxRange]
 
 -- Convert a tree to a list of values
 treeToList :: Tree Int -> [Int]

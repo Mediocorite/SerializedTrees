@@ -80,15 +80,25 @@
   (major1) == 0 && (major2) <  6 || \
   (major1) == 0 && (major2) == 6 && (minor) <= 5)
 #endif /* MIN_VERSION_containers */
-/* package hspec-2.11.3 */
+/* package deepseq-1.4.6.1 */
+#ifndef VERSION_deepseq
+#define VERSION_deepseq "1.4.6.1"
+#endif /* VERSION_deepseq */
+#ifndef MIN_VERSION_deepseq
+#define MIN_VERSION_deepseq(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  4 || \
+  (major1) == 1 && (major2) == 4 && (minor) <= 6)
+#endif /* MIN_VERSION_deepseq */
+/* package hspec-2.11.4 */
 #ifndef VERSION_hspec
-#define VERSION_hspec "2.11.3"
+#define VERSION_hspec "2.11.4"
 #endif /* VERSION_hspec */
 #ifndef MIN_VERSION_hspec
 #define MIN_VERSION_hspec(major1,major2,minor) (\
   (major1) <  2 || \
   (major1) == 2 && (major2) <  11 || \
-  (major1) == 2 && (major2) == 11 && (minor) <= 3)
+  (major1) == 2 && (major2) == 11 && (minor) <= 4)
 #endif /* MIN_VERSION_hspec */
 /* package mastersdiss-0.1.0.0 */
 #ifndef VERSION_mastersdiss
@@ -110,6 +120,16 @@
   (major1) == 2 && (major2) <  2 || \
   (major1) == 2 && (major2) == 2 && (minor) <= 2)
 #endif /* MIN_VERSION_mtl */
+/* package random-1.2.1.1 */
+#ifndef VERSION_random
+#define VERSION_random "1.2.1.1"
+#endif /* VERSION_random */
+#ifndef MIN_VERSION_random
+#define MIN_VERSION_random(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 1)
+#endif /* MIN_VERSION_random */
 /* package transformers-0.5.6.2 */
 #ifndef VERSION_transformers
 #define VERSION_transformers "0.5.6.2"

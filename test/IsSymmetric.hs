@@ -1,19 +1,25 @@
 module IsSymmetric where 
 
-import qualified Data.ByteString as B
--- import qualified Data.ByteString.Builder as BB
--- import qualified Data.ByteString.Lazy as BSL
 import Data.Word (Word8)
-
 import Tree (Tree(..))
-import View (Ptr(..), view, int64Value, View(..))
-isSymmetricNodes :: B.ByteString -> B.ByteString -> Bool
-isSymmetricNodes node1 node2 = node1 == B.reverse node2
+import View (Ptr(..), view, View(..))
 
+-- For Serialized Trees
 isSymmetric :: Ptr (Tree Word8) -> Bool
-isSymmetric ptr = case view ptr of
-    VLeaf _ -> True  -- A leaf node is always symmetric
-    VNode _ leftPtr rightPtr ->
-        let leftSubtree = B.take (10 + int64Value (B.take 8 (B.drop 2 (buffer rightPtr)))) (buffer leftPtr)
-            rightSubtree = B.take (10 + int64Value (B.take 8 (B.drop 2 (buffer leftPtr)))) (buffer rightPtr)
-        in isSymmetricNodes leftSubtree rightSubtree && isSymmetric (Ptr (B.drop 10 (buffer leftPtr)) 0) && isSymmetric (Ptr (B.drop 10 (buffer rightPtr)) 0)
+isSymmetric ptr = symmetricHelper (view ptr) (view ptr)
+
+symmetricHelper :: View Word8 -> View Word8 -> Bool
+symmetricHelper (VLeaf v1) (VLeaf v2) = v1 == v2
+symmetricHelper (VNode v1 left1 right1) (VNode v2 left2 right2) = 
+    v1 == v2 && symmetricHelper (view left1) (view right2) && symmetricHelper (view right1) (view left2)
+symmetricHelper _ _ = False
+
+-- For Traditional Trees
+traditionalIsSymmetric :: Eq a => Tree a -> Bool
+traditionalIsSymmetric tree = traditionalSymmetricHelper tree tree
+
+traditionalSymmetricHelper :: Eq a => Tree a -> Tree a -> Bool
+traditionalSymmetricHelper (Leaf v1) (Leaf v2) = v1 == v2
+traditionalSymmetricHelper (Node v1 l1 r1) (Node v2 l2 r2) = 
+    v1 == v2 && traditionalSymmetricHelper l1 r2 && traditionalSymmetricHelper r1 l2
+traditionalSymmetricHelper _ _ = False

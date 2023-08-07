@@ -1,18 +1,35 @@
--- Level order traversal using the pointer
-module LevelOrder where 
-  
--- import qualified Data.ByteString as B
--- import qualified Data.ByteString.Builder as BB
--- import qualified Data.ByteString.Lazy as BSL
+module LevelOrder where
+    
 import Data.Word (Word8)
-
 import Tree (Tree(..))
-import View (Ptr(..), view, int64Value, View(..))
-levelOrder :: Ptr (Tree Word8) -> [Word8]
+import View (Ptr(..), view, View(..))
+
+-- For Serialized Trees
+levelOrder :: Ptr (Tree Word8) -> [[Word8]]
 levelOrder ptr = levelOrderHelper [ptr]
 
-levelOrderHelper :: [Ptr (Tree Word8)] -> [Word8]
+levelOrderHelper :: [Ptr (Tree Word8)] -> [[Word8]]
 levelOrderHelper [] = []
-levelOrderHelper (currentPtr : rest) = case view currentPtr of
-    VLeaf v -> v : levelOrderHelper rest
-    VNode v leftPtr rightPtr -> v : levelOrderHelper (rest ++ [leftPtr, rightPtr])
+levelOrderHelper pointers =
+    let (values, nextPtrs) = unzip $ map fetchValue pointers
+    in values : levelOrderHelper (concat nextPtrs)
+
+fetchValue :: Ptr (Tree Word8) -> (Word8, [Ptr (Tree Word8)])
+fetchValue ptr = 
+    case view ptr of
+        VLeaf v -> (v, [])
+        VNode v left right -> (v, [left, right])
+
+-- For Traditional Trees
+traditionalLevelOrder :: Tree a -> [[a]]
+traditionalLevelOrder tree = traditionalLevelOrderHelper [tree]
+
+traditionalLevelOrderHelper :: [Tree a] -> [[a]]
+traditionalLevelOrderHelper [] = []
+traditionalLevelOrderHelper trees =
+    let (values, nextTrees) = unzip $ map fetchValueTraditional trees
+    in values : traditionalLevelOrderHelper (concat nextTrees)
+
+fetchValueTraditional :: Tree a -> (a, [Tree a])
+fetchValueTraditional (Leaf v) = (v, [])
+fetchValueTraditional (Node v left right) = (v, [left, right])
