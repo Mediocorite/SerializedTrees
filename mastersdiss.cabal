@@ -28,7 +28,8 @@ common common-all
 library
     import:           common-all
     exposed-modules:  Serialization, Traversal, Tree, Builder, View,
-                      Invert, IsSymmetric, LevelOrder, MaxDepth, PathSum
+                      Invert, IsSymmetric, LevelOrder, MaxDepth, PathSum, 
+                      Deserializer
     hs-source-dirs:   src, test
 
 executable main
@@ -63,4 +64,5 @@ test-suite test
         transformers >= 0.5 && < 0.6,
         mastersdiss
     other-modules:      Serialization, Traversal, Tree, Builder, View,
-                        Invert, IsSymmetric, LevelOrder, MaxDepth, PathSum
+                        Invert, IsSymmetric, LevelOrder, MaxDepth, PathSum,
+                        Deserializer
