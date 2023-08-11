@@ -10,8 +10,8 @@ import Tree ( Tree )
 import Serialization (bsToIntList)
 
 data Ptr t = Ptr {
-    buffer :: B.ByteString,
-    position :: Int
+    buffer   :: !B.ByteString,      -- Strict field
+    position :: {-# UNPACK #-} !Int -- Strict field with UNPACK
 }
 
 instance Show (Ptr (Tree Word8)) where
@@ -22,16 +22,17 @@ instance Eq (Ptr (Tree Word8)) where
   (==) :: Ptr (Tree Word8) -> Ptr (Tree Word8) -> Bool
   (Ptr buffer1 position1) == (Ptr buffer2 position2) = buffer1 == buffer2 && position1 == position2
 
-
-data View a = VLeaf a | VNode a (Ptr (Tree a)) (Ptr (Tree a))
+data View a = VLeaf !a | VNode !a !(Ptr (Tree a)) !(Ptr (Tree a)) -- Strict fields
 
 -- I am still trying to find if there is a way to achieve this
 -- without converting into a lazy Byte string. Given it's only 
 -- doing so with 8 bytes, i think it can be ignored for now
 int64Value :: B.ByteString -> Int
+{-# INLINE int64Value #-}
 int64Value bs = fromIntegral (runGet getWord64be $ BSL.fromStrict bs) :: Int
 
 view:: Ptr (Tree Word8) -> View Word8
+{-# INLINE view #-}
 view pointer = 
     let bs  = buffer pointer
         pos = position pointer

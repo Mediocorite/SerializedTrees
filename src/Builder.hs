@@ -9,14 +9,16 @@ import View (Ptr (..))
 import Control.DeepSeq (NFData(..))
 
 data Serializer a = Serializer {
-    builder:: Builder,
-    size:: Word64
+    builder:: !Builder,            -- Strict field
+    size:: {-# UNPACK #-} !Word64  -- Strict field with UNPACK
 }
 
 leafBuilder:: Word8 -> Serializer (Tree Word8)
+{-# INLINE leafBuilder #-}
 leafBuilder v = Serializer (BB.word8 0x00 <> BB.word8 v) 2
 
 nodeBuilder:: Word8 -> Serializer (Tree Word8) -> Serializer (Tree Word8)-> Serializer (Tree Word8)
+{-# INLINE nodeBuilder #-}
 nodeBuilder value left right =
     let leftBuilder = builder left
         leftSize = size left
@@ -26,6 +28,7 @@ nodeBuilder value left right =
     in Serializer (BB.word8 0x01 <> BB.word8 value <> rightOffset <> leftBuilder <> rightBuilder) (10 + leftSize + rightSize)
 
 runSerializer:: Serializer a -> Ptr a
+{-# INLINE runSerializer #-}
 runSerializer value =
     let builderObject = builder value
         bs = B.toStrict $ BB.toLazyByteString builderObject
