@@ -10,7 +10,7 @@ import Tree ( Tree )
 import Serialization (bsToIntList)
 
 data Ptr t = Ptr {
-    buffer   :: !B.ByteString,      -- Strict field
+    buffer   :: {-# UNPACK #-} !B.ByteString,      -- Strict field
     position :: {-# UNPACK #-} !Int -- Strict field with UNPACK
 }
 
@@ -32,7 +32,7 @@ int64Value :: B.ByteString -> Int
 int64Value bs = fromIntegral (runGet getWord64be $ BSL.fromStrict bs) :: Int
 
 view:: Ptr (Tree Word8) -> View Word8
-{-# INLINE view #-}
+-- {-# INLINE view #-}
 view pointer = 
     let bs  = buffer pointer
         pos = position pointer

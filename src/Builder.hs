@@ -9,7 +9,7 @@ import View (Ptr (..))
 import Control.DeepSeq (NFData(..))
 
 data Serializer a = Serializer {
-    builder:: !Builder,            -- Strict field
+    builder:: {-# UNPACK #-} !Builder,            -- Strict field
     size:: {-# UNPACK #-} !Word64  -- Strict field with UNPACK
 }
 
@@ -18,7 +18,7 @@ leafBuilder:: Word8 -> Serializer (Tree Word8)
 leafBuilder v = Serializer (BB.word8 0x00 <> BB.word8 v) 2
 
 nodeBuilder:: Word8 -> Serializer (Tree Word8) -> Serializer (Tree Word8)-> Serializer (Tree Word8)
-{-# INLINE nodeBuilder #-}
+-- {-# INLINE nodeBuilder #-}
 nodeBuilder value left right =
     let leftBuilder = builder left
         leftSize = size left
