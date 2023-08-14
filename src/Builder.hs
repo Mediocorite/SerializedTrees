@@ -9,7 +9,7 @@ import View (Ptr (..))
 import Control.DeepSeq (NFData(..))
 
 data Serializer a = Serializer {
-    builder:: {-# UNPACK #-} !Builder,            -- Strict field
+    builder:: !Builder,            -- Strict field
     size:: {-# UNPACK #-} !Word64  -- Strict field with UNPACK
 }
 

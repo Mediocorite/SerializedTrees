@@ -1,9 +1,9 @@
--- Calculate the path sum of the binary tree using the pointer
 module PathSum where
 
 import Data.Word (Word8)
 import Tree (Tree(..))
 import View (Ptr(..), view, View(..))
+import Deserializer (deserialize)
 
 -- For Serialized Trees
 pathSum :: Ptr (Tree Word8) -> Word8 -> Bool
@@ -26,3 +26,10 @@ traditionalPathSumHelper (Leaf v) currentSum targetSum = currentSum + v == targe
 traditionalPathSumHelper (Node v left right) currentSum targetSum =
     let newSum = currentSum + v
     in traditionalPathSumHelper left newSum targetSum || traditionalPathSumHelper right newSum targetSum
+
+--For Deserialize and PathSum
+mapTree :: (a -> b) -> Tree a -> Tree b
+mapTree f (Leaf a) = Leaf (f a)
+mapTree f (Node value left right) = Node (f value) (mapTree f left) (mapTree f right)
+deserializePathSum :: Ptr (Tree Word8) -> Int -> Bool
+deserializePathSum = traditionalPathSum . mapTree fromIntegral . deserialize

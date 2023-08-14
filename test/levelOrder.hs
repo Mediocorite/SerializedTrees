@@ -3,6 +3,7 @@ module LevelOrder where
 import Data.Word (Word8)
 import Tree (Tree(..))
 import View (Ptr(..), view, View(..))
+import Deserializer (deserialize)
 
 -- For Serialized Trees
 levelOrder :: Ptr (Tree Word8) -> [[Word8]]
@@ -33,3 +34,7 @@ traditionalLevelOrderHelper trees =
 fetchValueTraditional :: Tree a -> (a, [Tree a])
 fetchValueTraditional (Leaf v) = (v, [])
 fetchValueTraditional (Node v left right) = (v, [left, right])
+
+-- Deserialize and then traditional algorithm
+deserializeTraditionalLevelOrder :: Ptr (Tree Word8) -> [[Word8]]
+deserializeTraditionalLevelOrder = traditionalLevelOrder . deserialize

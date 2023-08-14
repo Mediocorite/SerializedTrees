@@ -4,6 +4,7 @@ module Invert where
 -- import qualified Data.ByteString.Builder as BB
 -- import qualified Data.ByteString.Lazy as BSL
 import Data.Word (Word8)
+import Deserializer (deserialize)
 
 import Tree (Tree(..))
 import View (Ptr(..), 
@@ -30,3 +31,7 @@ invert pointer =
 traditionalInvertTree :: Tree a -> Tree a
 traditionalInvertTree (Leaf val) = Leaf val
 traditionalInvertTree (Node val left right) = Node val (traditionalInvertTree right) (traditionalInvertTree left)
+
+-- This function combines deserialization and inversion
+deserializeAndInvert :: Ptr (Tree Word8) -> Tree Word8
+deserializeAndInvert = traditionalInvertTree . deserialize

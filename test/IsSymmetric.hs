@@ -3,6 +3,7 @@ module IsSymmetric where
 import Data.Word (Word8)
 import Tree (Tree(..))
 import View (Ptr(..), view, View(..))
+import Deserializer (deserialize)
 
 -- For Serialized Trees
 isSymmetric :: Ptr (Tree Word8) -> Bool
@@ -23,3 +24,7 @@ traditionalSymmetricHelper (Leaf v1) (Leaf v2) = v1 == v2
 traditionalSymmetricHelper (Node v1 l1 r1) (Node v2 l2 r2) = 
     v1 == v2 && traditionalSymmetricHelper l1 r2 && traditionalSymmetricHelper r1 l2
 traditionalSymmetricHelper _ _ = False
+
+-- Combining Deserializer with Traditional Algorithms
+deserializeAndIsSymmetric:: Ptr (Tree Word8) -> Bool
+deserializeAndIsSymmetric = traditionalIsSymmetric . deserialize

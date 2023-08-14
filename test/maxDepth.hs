@@ -1,9 +1,9 @@
--- Find the maximum depth of the binary tree using the pointer
 module MaxDepth where
     
 import Data.Word (Word8)
 import Tree (Tree(..))
 import View (Ptr(..), view, View(..))
+import Deserializer (deserialize)
 
 -- For Serialized Trees
 maxDepth :: Ptr (Tree Word8) -> Int
@@ -16,3 +16,7 @@ maxDepth ptr =
 traditionalMaxDepth :: Tree a -> Int
 traditionalMaxDepth (Leaf _) = 1
 traditionalMaxDepth (Node _ left right) = 1 + max (traditionalMaxDepth left) (traditionalMaxDepth right)
+
+--For Deserialize and MaxDepth
+deserializeMaxDepth :: Ptr (Tree Word8) -> Int
+deserializeMaxDepth = traditionalMaxDepth . deserialize

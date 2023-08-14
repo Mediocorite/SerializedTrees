@@ -11,10 +11,6 @@ instance Functor Tree where
   fmap f (Node a l r) = Node (f a) (fmap f l) (fmap f r)
 
 
-calculateDepth :: Tree a -> Int
-calculateDepth (Leaf _) = 1
-calculateDepth (Node _ left right) = 1 + max (calculateDepth left) (calculateDepth right)
-
 -- Generate a binary tree with a given depth and random values
 generateTree :: Int -> Int -> IO (Tree Int, Int)
 generateTree maxValue 0 = do
@@ -30,7 +26,7 @@ generateTree maxValue depth = do
 
 -- Generate 100 trees with values between 1 and 255 and depths from 2 to 100
 generateTrees :: Int -> Int -> IO [(Tree Int, Int)]
-generateTrees maxValue maxRange= mapM (generateTree maxValue) [2..maxRange]
+generateTrees maxValue maxRange= mapM (generateTree maxValue) [2, 10..maxRange]
 
 -- Convert a tree to a list of values
 treeToList :: Tree Int -> [Int]
