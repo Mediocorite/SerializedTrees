@@ -13,10 +13,10 @@ import Data.Word (Word8)
 
 -- Benchmarking the following algorithms; Comment unneeded
 -- import Invert (invert, traditionalInvertTree,deserializeAndInvert)
-import IsSymmetric (isSymmetric, traditionalIsSymmetric, deserializeAndIsSymmetric)
+-- import IsSymmetric (isSymmetric, traditionalIsSymmetric, deserializeAndIsSymmetric)
 -- import LevelOrder (levelOrder, traditionalLevelOrder, deserializeTraditionalLevelOrder)
 -- import MaxDepth (maxDepth, traditionalMaxDepth, deserializeMaxDepth)
--- import PathSum (pathSum, traditionalPathSumHelper)
+import PathSum (pathSum, traditionalPathSum, deserializePathSum)
 
 
 -- Add the NFData instance for Tree
@@ -63,9 +63,9 @@ main = do
       -- bgroup "deserializeAndInvert" [ bench (show depth) $ nf deserializeAndInvert ptr | (_, ptr, depth) <- trees ],
       -- bgroup "invert" [ bench (show depth) $ nf invert ptr | (_, ptr, depth) <- trees ]
       -- Uncomment the following three for IsSymmetric Benchmark
-      bgroup "traditionalIsSymmetric" [ bench (show depth) $ nf traditionalIsSymmetric tree | (tree, _, depth) <- trees ],
-      bgroup "deserializeAndIsSymmetric" [ bench (show depth) $ nf deserializeAndIsSymmetric ptr | (_, ptr, depth) <- trees ],
-      bgroup "IsSymmetric" [ bench (show depth) $ nf isSymmetric ptr | (_, ptr, depth) <- trees ]
+      -- bgroup "traditionalIsSymmetric" [ bench (show depth) $ nf traditionalIsSymmetric tree | (tree, _, depth) <- trees ],
+      -- bgroup "deserializeAndIsSymmetric" [ bench (show depth) $ nf deserializeAndIsSymmetric ptr | (_, ptr, depth) <- trees ],
+      -- bgroup "IsSymmetric" [ bench (show depth) $ nf isSymmetric ptr | (_, ptr, depth) <- trees ]
       -- Uncomment the following three for Level Order Benchmark
       -- bgroup "traditionalLevelOrder" [ bench (show depth) $ nf traditionalLevelOrder tree | (tree,_, depth) <- trees ],
       -- bgroup "deserializeTraditionalLevelOrder" [ bench (show depth) $ nf deserializeTraditionalLevelOrder ptr | (_, ptr, depth) <- trees ],
@@ -75,6 +75,7 @@ main = do
       -- bgroup "deserializeTraditionalLevelOrder" [ bench (show depth) $ nf deserializeMaxDepth ptr | (_, ptr, depth) <- trees ],
       -- bgroup "maxDepth" [ bench (show depth) $ nf maxDepth ptr | (_, ptr, depth) <- trees ]
       -- Uncomment the following three for Invert Benchmark
-      -- bgroup "pathSum" [ bench (show depth) $ nf pathSum ptr | (tree, ptr, depth) <- trees ],
-      -- bgroup "traditionalPathSumHelper" [ bench (show depth) $ nf traditionalPathSumHelper tree | (tree, ptr, depth) <- trees ]
+      bgroup "traditionalPathSum" [ bench (show depth) $ nf traditionalPathSum tree | (tree, _, depth) <- trees ],
+      bgroup "deserializePathSum" [ bench (show depth) $ nf deserializePathSum ptr | (_, ptr, depth) <- trees ],
+      bgroup "pathSum" [ bench (show depth) $ nf pathSum ptr | (_, ptr, depth) <- trees ]
     ]
