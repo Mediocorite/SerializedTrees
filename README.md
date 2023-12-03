@@ -1,4 +1,4 @@
-# masters-diss
+# Serialized Trees
 A library for creating and managing serialized trees.
 
  ### Benchmarks
